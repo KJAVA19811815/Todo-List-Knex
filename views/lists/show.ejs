@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <h1>SEE THE LIST</h1>
+    <% result.forEach(function(r){ %>
+      <h2><%= r.name %></h2>
+    <h2><a href="/lists/<%=r.id%>/tasks/new">CREATE TASK</a></h2>
+
+    <% }) %>
+  </body>
+</html>

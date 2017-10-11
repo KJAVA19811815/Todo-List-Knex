@@ -16,7 +16,40 @@ app.use(express.static(__dirname + "/public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get("/lists", (req, res) => {
-  res.render("lists/index");
+  knex("lists")
+    .select()
+    .then(function(lists) {
+      res.render("lists/index", { lists: lists });
+    });
+});
+
+app.get("/lists/new", (req, res) => {
+  res.render("lists/new");
+});
+
+app.get("/lists/:id", (req, res) => {
+  knex("lists")
+    .where("id", "=", req.params.id)
+    .then(function(result) {
+      console.log(result);
+      res.render("lists/show", { result: result });
+    });
+});
+
+app.get("/lists/:id/tasks/new", (req, res) => {
+  res.render("tasks/new");
+});
+
+app.post("/lists", (req, res) => {
+  let name = req.body.name;
+
+  knex("lists")
+    .insert({
+      name: name
+    })
+    .then(function(result) {
+      res.redirect("/lists");
+    });
 });
 
 app.listen(8080, () => {
