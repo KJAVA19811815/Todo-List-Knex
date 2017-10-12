@@ -15,6 +15,9 @@ app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.get("/", (req, res) => {
+  res.redirect("/lists");
+});
 app.get("/lists", (req, res) => {
   knex("lists")
     .select()
@@ -31,13 +34,39 @@ app.get("/lists/:id", (req, res) => {
   knex("lists")
     .where("id", "=", req.params.id)
     .then(function(result) {
-      console.log(result);
       res.render("lists/show", { result: result });
     });
 });
 
+app.get("/lists/:id/tasks", (req, res) => {
+  knex("tasks")
+    .select()
+    .where("list_id", "=", req.params.id)
+    .then(function(result) {
+      console.log(result);
+      res.render("tasks/index", { result: result });
+    });
+});
+
 app.get("/lists/:id/tasks/new", (req, res) => {
-  res.render("tasks/new");
+  res.render("tasks/new", { id: req.params.id });
+});
+
+app.post("/lists/:id/tasks", (req, res) => {
+  console.log(req.body);
+  let id = req.params.id;
+  console.log(id, "IDIDIDIDID");
+  let task = req.body.task;
+  knex("tasks")
+    .insert({
+      name: task,
+      list_id: id,
+      completed: false
+    })
+    .then(function(result) {
+      console.log(result);
+      res.redirect(`/lists/${id}/tasks`);
+    });
 });
 
 app.post("/lists", (req, res) => {
