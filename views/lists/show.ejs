@@ -4,8 +4,22 @@
     <h1>SEE THE LIST</h1>
     <% result.forEach(function(r){ %>
       <h2><%= r.name %></h2>
-    <h2><a href="/lists/<%=r.id%>/tasks/new">CREATE TASK</a></h2>
-    <h2><a href="/lists/<%=r.id%>/tasks"> TASK</a></h2>
+
+      <div class="card" style="width: 20rem;">
+        <img class="card-img-top" src="..." alt="Card image cap">
+        <div class="card-body">
+          <h4 class="card-title">CREATE A TASK</h4>
+          <a href="/lists/<%=r.id%>/tasks/new" class="btn btn-primary">CREATE-TASK</a>
+        </div>
+      </div>
+
+    <div class="card" style="width: 20rem;">
+      <img class="card-img-top" src="..." alt="Card image cap">
+      <div class="card-body">
+        <h4 class="card-title">SEE ALL THE TASKS</h4>
+        <a href="/lists/<%=r.id%>/tasks" class="btn btn-primary">SEE ALL TASKS</a>
+      </div>
+    </div>
 
 
     <% }) %>

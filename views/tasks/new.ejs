@@ -1,11 +1,13 @@
 <% include ../partials/_header %>
 
   <body>
-    <form method="POST" action="/lists/<%=id %>/tasks">
-      CREATE TASK:<br>
-      <input type="text" name="task"><br>
-      <input type="submit" value="submit">
-    </form>
+    <div class="form-group">
+      <form method="POST" action="/lists/<%=id %>/tasks">
+        <label for="exampleInputEmail1"><h2>Enter-Task</h2></label>
+        <input type="text" name="task" class="form-control"><br>
+        <button type="submit" class="btn btn-primary">SUBMIT</button>
+      </form>
+    </div>
 
   </body>
 </html>
