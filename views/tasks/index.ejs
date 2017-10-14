@@ -1,14 +1,16 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
+<% include ../partials/_header %>
+
   <body>
     <h1>THESE ARE THE TASKS</h1>
     <% result.forEach(function(res){ %>
       <h2><%= res.name %></h2>
+      <h2><a href="#"><%= res.completed %></a></h2>
+
+
     <% }) %>
+    <script>
+
+    </script>
 
   </body>
 </html>

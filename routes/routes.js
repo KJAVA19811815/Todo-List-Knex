@@ -40,6 +40,14 @@ router.get("/lists/:id/tasks", (req, res) => {
     });
 });
 
+router.put("/lists/:id/tasks", (req, res) => {
+  // knex("tasks")
+  // .where
+  //  knex("test").where("col1","a3")
+  //  .update({col2: "b3new"}).then(function (count) {
+  // console.log(count);
+});
+
 router.get("/lists/:id/tasks/new", (req, res) => {
   res.render("tasks/new", { id: req.params.id });
 });
