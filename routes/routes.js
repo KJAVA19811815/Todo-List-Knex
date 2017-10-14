@@ -8,7 +8,7 @@ const knexConfig = require("../knexfile");
 const knex = require("knex")(knexConfig[ENV]);
 
 router.get("/", (req, res) => {
-  res.redirect("/lists");
+  res.render("home");
 });
 router.get("/lists", (req, res) => {
   knex("lists")
