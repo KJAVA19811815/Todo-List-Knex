@@ -35,17 +35,21 @@ router.get("/lists/:id/tasks", (req, res) => {
     .select()
     .where("list_id", "=", req.params.id)
     .then(function(result) {
-      console.log(result);
       res.render("tasks/index", { result: result });
     });
 });
 
 router.put("/lists/:id/tasks", (req, res) => {
-  // knex("tasks")
-  // .where
-  //  knex("test").where("col1","a3")
-  //  .update({col2: "b3new"}).then(function (count) {
-  // console.log(count);
+  const task = req.body.completed;
+  const task2 = JSON.parse(task);
+  console.log(task2);
+  knex("tasks")
+    .select()
+    .where("id", "=", "id")
+    .update({
+      completed: task2,
+      thisKeyIsSkipped: undefined
+    });
 });
 
 router.get("/lists/:id/tasks/new", (req, res) => {
@@ -53,9 +57,7 @@ router.get("/lists/:id/tasks/new", (req, res) => {
 });
 
 router.post("/lists/:id/tasks", (req, res) => {
-  console.log(req.body);
   let id = req.params.id;
-  console.log(id, "IDIDIDIDID");
   let task = req.body.task;
   knex("tasks")
     .insert({
